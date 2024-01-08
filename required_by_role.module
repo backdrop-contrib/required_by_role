@@ -147,8 +147,7 @@ function required_by_role_required_by_role_callback() {
  * At least one of $roles values is in the $account->roles array?.
  */
 function _required_by_role_roles_intersect($account, $roles, $context, $form_state) {
-
-  $match = array_intersect(array_keys($account->roles), $roles);
+  $match = array_intersect($account->roles, $roles);
   $is_required = !empty($match);
 
   return $is_required;
