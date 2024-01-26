@@ -10,7 +10,7 @@
 class RequiredByRoleBasic extends BackdropWebTestCase {
 
   protected $entity_type = 'node';
-  protected $entity_bundle = 'article';
+  protected $entity_bundle = 'post';
 
   protected $basePermissions = array();
   protected $required_fields_rid = NULL;
@@ -23,7 +23,7 @@ class RequiredByRoleBasic extends BackdropWebTestCase {
    */
   protected function setUp() {
 
-    parent::setUp('field_ui', 'required_by_role_test');
+    parent::setUp();
 
     $this->basePermissions = array(
       'access content',
@@ -62,8 +62,9 @@ class RequiredByRoleBasic extends BackdropWebTestCase {
 
       $edit = array();
       $edit['roles'] = array($this->required_fields_rid => $this->required_fields_rid);
-
-      $account->save();
+      if ($account) {
+        $account->save();
+      }
       self::$required_user = $account;
 
     }

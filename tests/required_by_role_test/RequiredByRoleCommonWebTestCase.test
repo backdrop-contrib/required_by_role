@@ -3,7 +3,6 @@
  * @file
  * Tests for the common cases.
  */
-require_once('RequiredByRoleBasic.test');
 
 class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
 
@@ -28,7 +27,7 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
    */
   protected function setUp() {
 
-    parent::setUp();
+    parent::setUp(['field_ui', 'required_by_role_test']);
 
     $rid = (int) $this->required_fields_rid;
 

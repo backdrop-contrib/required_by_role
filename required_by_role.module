@@ -7,8 +7,15 @@
 
 module_load_include('inc', 'required_by_role', 'required_by_role.date');
 
+function required_by_role_autoload_info() {
+  return [
+    'RequiredByRoleBasic' => 'tests/required_by_role_test/RequiredByRoleBasic.test'
+  ];
+}
+
 /**
  * Implements hook_help().
+ *
  */
 function required_by_role_help($path, $arg) {
   switch ($path) {

@@ -3,7 +3,6 @@
  * @file
  * Tests for the Email field.
  */
-require_once('RequiredByRoleBasic.test');
 
 class RequiredByRoleEmailFieldWebTestCase extends RequiredByRoleBasic {
 
