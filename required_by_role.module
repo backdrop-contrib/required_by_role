@@ -189,7 +189,7 @@ function required_by_role_form_field_ui_field_edit_form_alter(&$form, $form_stat
   // in this context hidding required option.
   $attached = array(
     'js' => array(
-      $module_path . '/required_by_role.js',
+      $module_path . '/js/required_by_role.js',
     ),
   );
 
