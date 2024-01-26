@@ -2,7 +2,8 @@ Required By Role
 ======================
 
 This module allows you to give some user roles an exemption to
-required fields. Configurations are made per field.
+required fields. Configurations are made per field. This is a port of the 1.x
+version for Drupal 7. There was no upgrade path between 1.x and 2.x.
 
 Installation
 ------------
