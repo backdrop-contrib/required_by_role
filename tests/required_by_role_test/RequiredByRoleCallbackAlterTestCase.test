@@ -11,7 +11,7 @@
 class RequiredByRoleCallbackAlterTestCase extends RequiredByRoleBasic {
 
   protected function setUp() {
-    parent::setUp(['field_ui', 'required_by_role_test']);
+    parent::setUp(['field_ui', 'required_by_role', 'required_by_role_test']);
   }
   /**
    * Test the default callback.
@@ -35,6 +35,7 @@ class RequiredByRoleCallbackAlterTestCase extends RequiredByRoleBasic {
     module_enable($modules);
 
     $result = _required_by_role_get_callback();
+
     $callback = 'required_by_role_callback_test_required_callback';
     $message = "The callback function should be $callback";
 

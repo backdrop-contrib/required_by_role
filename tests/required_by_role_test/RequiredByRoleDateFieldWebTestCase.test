@@ -62,9 +62,9 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
     );
 
     // Create a date fields with simple values.
-    foreach (array('date', 'datestamp', 'datetime') as $field_type) {
+    foreach (array('date', 'datestamp', 'datetime') as $field_key => $field_type) {
       foreach (array('date_select', 'date_popup', 'date_text') as $widget_type) {
-        $field_name = "field_test_$widget_type";
+        $field_name = substr("field_rbr_test_$field_key" . "_" . "$widget_type", 0, 32);
         $label = 'Test';
         $options = array(
           'label' => $label,
@@ -121,9 +121,9 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
     );
 
     // Create a date fields with simple values.
-    foreach (array('date', 'datestamp', 'datetime') as $field_type) {
+    foreach (array('date', 'datestamp', 'datetime') as $field_key => $field_type) {
       foreach (array('date_select', 'date_popup', 'date_text') as $widget_type) {
-        $field_name = "field_test_$widget_type";
+        $field_name = substr("field_rbr_test_$field_key" . "_" . $field_key . "_" . "$widget_type", 0, 32);
         $label = 'Test';
         $options = array(
           'label' => $label,
@@ -155,9 +155,9 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
 
     $default_granularity = array('year', 'month', 'day', 'hour', 'minute');
 
-    $field_name = !empty($field_name) ? $field_name : 'field_test';
+    $field_name = !empty($field_name) ? $field_name : 'field_rbr_date_test';
     $entity_type = !empty($entity_type) ? $entity_type : 'node';
-    $bundle = !empty($bundle) ? $bundle : 'article';
+    $bundle = !empty($bundle) ? $bundle : 'post';
     $label = !empty($label) ? $label : 'Test';
     $field_type = !empty($field_type) ? $field_type : 'datetime';
     $repeat = !empty($repeat) ? $repeat : 0;
@@ -266,7 +266,7 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
   /**
    * Helper method to delete a date field.
    */
-  protected function deleteDateField($label, $bundle = 'article', $bundle_name = 'Article') {
+  protected function deleteDateField($label, $bundle = 'post', $bundle_name = 'Post') {
     $this->backdropGet("admin/structure/types/manage/$bundle/fields");
     $this->clickLink('delete');
     $this->backdropPost(NULL, NULL, t('Delete'));

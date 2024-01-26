@@ -10,11 +10,11 @@ class RequiredByRoleImageFieldWebTestCase extends RequiredByRoleBasic {
 
   function setUp() {
 
-    parent::setUp('image');
+    parent::setUp(['image']);
 
     $rid = $this->required_fields_rid;
 
-    $instance = field_info_instance('node', 'field_image', 'article');
+    $instance = field_info_instance('node', 'field_image', 'post');
     $instance['settings']['required_by_role'] = array(
       1 => 0,
       3 => 0,
