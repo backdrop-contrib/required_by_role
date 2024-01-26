@@ -1,0 +1,29 @@
+[RequiredByRoleCommonWebTestCase]
+name = Required by role: Common
+description = Tests for common behaviors.
+group = Required by role
+file = required_by_role_test/RequiredByRoleCommonWebTestCase.test
+
+[RequiredByRoleCallbackAlterTestCase]
+name = Required by role: hook_required_by_role_callback_alter
+description = Test that hook_required_by_role_callback_alter works properly.
+group = Required by role
+file = required_by_role_test/RequiredByRoleCallbackAlterTestCase.test
+
+[RequiredByRoleDateFieldWebTestCase]
+name = Required by role: Date
+description = Tests for date field.
+group = Required by role
+file = required_by_role_test/RequiredByRoleDateFieldWebTestCase.test
+
+[RequiredByRoleEmailFieldWebTestCase]
+name = Required by role: Email
+description = Tests for email field
+group = Required by role
+file = required_by_role_test/RequiredByRoleEmailFieldWebTestCase.test
+
+[RequiredByRoleImageFieldWebTestCase]
+name = Required by role: Image
+description = Tests for image field.
+group = Required by role
+file = required_by_role_test/RequiredByRoleImageFieldWebTestCase.test

@@ -1,7 +1,6 @@
+type = module
 name = Required by role callback test
 description = Module to test the callback behavior.
-
 hidden = TRUE
-
-core = 7.x
+backdrop = 1.x
 dependencies[] = required_by_role_test

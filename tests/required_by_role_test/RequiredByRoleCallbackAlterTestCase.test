@@ -3,23 +3,13 @@
  * @file
  * Callback tests.
  */
+require_once('RequiredByRoleBasic.test');
 
 /**
  *
- * @see DrupalUnitTestCase
+ * @see backdropUnitTestCase
  */
 class RequiredByRoleCallbackAlterTestCase extends RequiredByRoleBasic {
-
-  /**
-   * GetInfo method.
-   */
-  public static function getInfo() {
-    return array(
-      'name' => 'Required by role: hook_required_by_role_callback_alter',
-      'description' => 'Test that hook_required_by_role_callback_alter works properly.',
-      'group' => 'Required by role',
-    );
-  }
 
   /**
    * Test the default callback.

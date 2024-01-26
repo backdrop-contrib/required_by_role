@@ -3,19 +3,9 @@
  * @file
  * Tests for the Email field.
  */
+require_once('RequiredByRoleBasic.test');
 
 class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
-
-  /**
-   * GetInfo method.
-   */
-  public static function getInfo() {
-    return array(
-      'name' => 'Required by role: Date',
-      'description' => 'Tests for date field.',
-      'group' => 'Required by role',
-    );
-  }
 
   /**
    * Setup method.
@@ -45,7 +35,7 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
    * Testing date_popup element in a non field form.
    */
   public function DotestDatePopupElementForm() {
-    $this->drupalGet('form-date-element-test');
+    $this->backdropGet('form-date-element-test');
     $this->assertNoText('Notice: Undefined index: #instance in required_by_role_', "No undefined index error found.");
   }
 
@@ -60,7 +50,7 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
    */
   public function DotestRequiredRole() {
 
-    $this->drupalLogin($this->getRequiredUser());
+    $this->backdropLogin($this->getRequiredUser());
 
     $edit = array();
     $edit['title'] = $this->randomName(8);
@@ -88,7 +78,7 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
 
         $this->createDateField($options, $required_by_role_settings);
 
-        $this->drupalPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
+        $this->backdropPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
 
         switch ($widget_type) {
           case 'date_select':
@@ -111,7 +101,7 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
       }
     }
 
-    $this->drupalLogout();
+    $this->backdropLogout();
   }
 
   /**
@@ -119,7 +109,7 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
    */
   public function DotestIsNonRequiredRole() {
 
-    $this->drupalLogin($this->getNonRequiredUser());
+    $this->backdropLogin($this->getNonRequiredUser());
 
     $edit = array();
     $edit['title'] = $this->randomName(8);
@@ -145,14 +135,14 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
         );
         $this->createDateField($options, $required_by_role_settings);
 
-        $this->drupalPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
+        $this->backdropPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
         $this->assertText($edit['title'], "Node has been created");
 
         $this->deleteDateField($label);
       }
     }
 
-    $this->drupalLogout();
+    $this->backdropLogout();
   }
 
   /**
@@ -269,8 +259,8 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
     field_cache_clear(TRUE);
 
     // Look at how the field got configured.
-    // $this->drupalGet("admin/structure/types/manage/$bundle/fields/$field_name");
-    // $this->drupalGet("admin/structure/types/manage/$bundle/display");
+    // $this->backdropGet("admin/structure/types/manage/$bundle/fields/$field_name");
+    // $this->backdropGet("admin/structure/types/manage/$bundle/display");
 
   }
 
@@ -278,9 +268,9 @@ class RequiredByRoleDateFieldWebTestCase extends RequiredByRoleBasic {
    * Helper method to delete a date field.
    */
   protected function deleteDateField($label, $bundle = 'article', $bundle_name = 'Article') {
-    $this->drupalGet("admin/structure/types/manage/$bundle/fields");
+    $this->backdropGet("admin/structure/types/manage/$bundle/fields");
     $this->clickLink('delete');
-    $this->drupalPost(NULL, NULL, t('Delete'));
+    $this->backdropPost(NULL, NULL, t('Delete'));
     $this->assertText("The field $label has been deleted from the $bundle_name content type.", 'Removed date field.');
   }
 }

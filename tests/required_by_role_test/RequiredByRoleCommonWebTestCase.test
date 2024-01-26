@@ -3,6 +3,7 @@
  * @file
  * Tests for the common cases.
  */
+require_once('RequiredByRoleBasic.test');
 
 class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
 
@@ -23,17 +24,6 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
   protected $optionsFieldCardinality = 0;
 
   /**
-   * Getinfo method.
-   */
-  public static function getInfo() {
-    return array(
-      'name' => 'Required by role: Common',
-      'description' => 'Tests for common behaviors.',
-      'group' => 'Required by role',
-    );
-  }
-
-  /**
    * Setup method.
    */
   protected function setUp() {
@@ -46,7 +36,7 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
       "instance[settings][required_by_role][$rid]" => $rid,
     );
 
-    $this->drupalLogin($this->getRequiredUser());
+    $this->backdropLogin($this->getRequiredUser());
 
     $this->setFieldLabel($this->randomName(4));
     $this->setFieldName('text_test');
@@ -110,9 +100,9 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
 
     $field_name = $this->getFieldMachineName();
 
-    $this->drupalPost('admin/structure/types/manage/' . $node_type . '/fields', $edit, t('Save'));
-    $this->drupalPost(NULL, array(), t('Save field settings'));
-    $this->drupalPost(NULL, $settings, t('Save settings'));
+    $this->backdropPost('admin/structure/types/manage/' . $node_type . '/fields', $edit, t('Save'));
+    $this->backdropPost(NULL, array(), t('Save field settings'));
+    $this->backdropPost(NULL, $settings, t('Save settings'));
 
     // Is field created?
     $this->assertRaw(t('Saved %label configuration', array('%label' => $label)), 'Field added');
@@ -165,7 +155,7 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
     $node_type = $this->entity_bundle;
 
     $url = "admin/structure/types/manage/" . $node_type . "/fields/" . $this->getFieldMachineName();
-    $this->drupalPost($url, $settings, t('Save settings'));
+    $this->backdropPost($url, $settings, t('Save settings'));
 
   }
 
@@ -177,7 +167,7 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
     $node_type = $this->entity_bundle;
 
     $url = "admin/structure/types/manage/" . $node_type . "/fields/" . $this->getFieldMachineName();
-    $this->drupalGet($url);
+    $this->backdropGet($url);
 
     foreach ($ids as $id => $active) {
       if ($active) {
@@ -209,7 +199,7 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
     $label = $this->getFieldLabel();
 
     $edit = array();
-    $this->drupalPost('admin/structure/types/manage/' . $this->entity_bundle . '/fields/' . $field_name, $edit, t('Save settings'));
+    $this->backdropPost('admin/structure/types/manage/' . $this->entity_bundle . '/fields/' . $field_name, $edit, t('Save settings'));
 
     // We shouldn´t get a field mandatory error message.
     $expected_error = t('@label field is required.', array('@label' => $label));
@@ -228,7 +218,7 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
   public function DotestNoneRemovedInOptionsWhenFieldIsRequired() {
 
     // Display form.
-    $this->drupalGet('node/add/' . $this->entity_bundle);
+    $this->backdropGet('node/add/' . $this->entity_bundle);
     $langcode = LANGUAGE_NONE;
 
     $xpath = '//select[@id=:id]//option[@value="_none" and text()=:label]';

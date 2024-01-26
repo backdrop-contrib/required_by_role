@@ -3,6 +3,7 @@
  * @file
  * Tests for the Email field.
  */
+require_once('RequiredByRoleBasic.test');
 
 class RequiredByRoleEmailFieldWebTestCase extends RequiredByRoleBasic {
 
@@ -11,17 +12,6 @@ class RequiredByRoleEmailFieldWebTestCase extends RequiredByRoleBasic {
    * @var string
    */
   protected $field_label = 'Email';
-
-  /**
-   * Getinfo method.
-   */
-  public static function getInfo() {
-    return array(
-      'name' => 'Required by role: Email',
-      'description' => 'Tests for email field.',
-      'group' => 'Required by role',
-    );
-  }
 
   /**
    * Setup method.
@@ -36,7 +26,7 @@ class RequiredByRoleEmailFieldWebTestCase extends RequiredByRoleBasic {
       "instance[settings][required_by_role][$rid]" => $rid,
     );
 
-    $this->drupalLogin($this->getRequiredUser());
+    $this->backdropLogin($this->getRequiredUser());
 
     $this->createEmailField(NULL, $settings);
 
@@ -51,14 +41,14 @@ class RequiredByRoleEmailFieldWebTestCase extends RequiredByRoleBasic {
     $edit['title'] = $this->randomName(8);
     $edit['body[und][0][value]'] = $this->randomName(16);
 
-    $this->drupalPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
+    $this->backdropPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
     $this->assertText($this->field_label . ' field is required.');
 
-    $this->drupalLogout();
+    $this->backdropLogout();
 
-    $this->drupalLogin($this->getNonRequiredUser());
+    $this->backdropLogin($this->getNonRequiredUser());
 
-    $this->drupalPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
+    $this->backdropPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
     $this->assertText($edit['title'], "Node has been created");
 
   }
@@ -82,9 +72,9 @@ class RequiredByRoleEmailFieldWebTestCase extends RequiredByRoleBasic {
 
     $field_name = 'field_' . $name;
 
-    $this->drupalPost('admin/structure/types/manage/' . $node_type . '/fields', $edit, t('Save'));
-    $this->drupalPost(NULL, array(), t('Save field settings'));
-    $this->drupalPost(NULL, $settings, t('Save settings'));
+    $this->backdropPost('admin/structure/types/manage/' . $node_type . '/fields', $edit, t('Save'));
+    $this->backdropPost(NULL, array(), t('Save field settings'));
+    $this->backdropPost(NULL, $settings, t('Save settings'));
 
     // Is field created?
     $this->assertRaw(t('Saved %label configuration', array('%label' => $label)), 'Field added');

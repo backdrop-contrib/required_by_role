@@ -3,18 +3,11 @@
  * @file
  * Tests for the Image field.
  */
+require_once('RequiredByRoleBasic.test');
 
 class RequiredByRoleImageFieldWebTestCase extends RequiredByRoleBasic {
 
   protected $field_name = 'field_image';
-
-  public static function getInfo() {
-    return array(
-      'name' => 'Required by role: Image',
-      'description' => 'Tests for image field.',
-      'group' => 'Required by role',
-    );
-  }
 
   function setUp() {
 
@@ -44,19 +37,19 @@ class RequiredByRoleImageFieldWebTestCase extends RequiredByRoleBasic {
     $edit['title'] = $this->randomName(8);
     $edit['body[und][0][value]'] = $this->randomName(16);
 
-    $this->drupalLogin($this->getRequiredUser());
+    $this->backdropLogin($this->getRequiredUser());
 
-    $this->drupalPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
+    $this->backdropPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
     $this->assertText('Image field is required.');
 
-    $this->drupalLogout();
+    $this->backdropLogout();
 
-    $this->drupalLogin($this->getNonRequiredUser());
+    $this->backdropLogin($this->getNonRequiredUser());
 
-    $this->drupalPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
+    $this->backdropPost('node/add/' . $this->entity_bundle, $edit, t('Save'));
     $this->assertText($edit['title'], "Node has been created");
 
-    $this->drupalLogout();
+    $this->backdropLogout();
   }
 
 }
