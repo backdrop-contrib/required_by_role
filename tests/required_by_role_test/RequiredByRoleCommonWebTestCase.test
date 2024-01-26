@@ -221,7 +221,7 @@ class RequiredByRoleCommonWebTestCase extends RequiredByRoleBasic {
     $langcode = LANGUAGE_NONE;
 
     $xpath = '//select[@id=:id]//option[@value="_none" and text()=:label]';
-    $id = drupal_html_id('edit-options_field-' . $langcode);
+    $id = backdrop_html_id('edit-options_field-' . $langcode);
 
     $arguments = array(
       ':id' => $id,

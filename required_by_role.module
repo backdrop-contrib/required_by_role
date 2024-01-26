@@ -65,7 +65,7 @@ function required_by_role_field_widget_form_alter(&$element, &$form_state, $cont
     _required_by_role_set_property($element, $is_required, $context, $form_state);
 
     // Give the opportunity to other modules to act on this property.
-    drupal_alter('required_property', $element, $field, $is_required);
+    backdrop_alter('required_property', $element, $field, $is_required);
 
   }
 }
@@ -136,7 +136,7 @@ function _required_by_role_get_callback() {
   $required_callback = module_invoke('required_by_role', 'required_by_role_callback');
 
   // We give here the opportunity to change the callback function.
-  drupal_alter('required_by_role_callback', $required_callback);
+  backdrop_alter('required_by_role_callback', $required_callback);
 
   return $required_callback;
 }
@@ -171,7 +171,7 @@ function required_by_role_form_field_ui_field_edit_form_alter(&$form, $form_stat
   $description = t('Select this option if you want this field to be required for ALL ROLES, otherwise choose specific roles in the checkboxes, below, under %name', array('%name' => 'Required by role'));
 
   $roles = user_roles();
-  unset($roles[DRUPAL_AUTHENTICATED_RID]);
+  unset($roles[BACKDROP_AUTHENTICATED_RID]);
 
   $header = array(
     'name' => t('Role'),
@@ -183,7 +183,7 @@ function required_by_role_form_field_ui_field_edit_form_alter(&$form, $form_stat
     );
   }
 
-  $module_path = drupal_get_path('module', 'required_by_role');
+  $module_path = backdrop_get_path('module', 'required_by_role');
 
   // Js add, needed because STATES API behaves unproperly
   // in this context hidding required option.
