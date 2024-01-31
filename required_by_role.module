@@ -171,7 +171,7 @@ function required_by_role_form_field_ui_field_edit_form_alter(&$form, $form_stat
   $description = t('Select this option if you want this field to be required for ALL ROLES, otherwise choose specific roles in the checkboxes, below, under %name', array('%name' => 'Required by role'));
 
   $roles = user_roles();
-  unset($roles[BACKDROP_AUTHENTICATED_RID]);
+  unset($roles[BACKDROP_AUTHENTICATED_ROLE]);
 
   $header = array(
     'name' => t('Role'),
