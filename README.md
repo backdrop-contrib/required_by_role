@@ -19,12 +19,14 @@ Bugs and feature requests should be reported in [the Issue Queue](https://github
 Current Maintainers
 -------------------
 
-- [Giant Rabbit](https://github.com/giant-rabbit).
+- [Eli Lisseck](https://github.com/elisseck)
+- [Peter Haight](https://github.com/Dawnthorn)
+- [Anthony Nemirovsky](https://github.com/anemirovsky)
 
 Credits
 -------
 
-- Ported to Backdrop CMS by [Giant Rabbit](https://github.com/giant-rabbit).
+- Ported to Backdrop CMS by [Eli Lisseck](https://github.com/elisseck).
 - Originally written for Drupal by [Alejandro Tabares](https://git.drupalcode.org/lord_of_freaks).
 
 License
